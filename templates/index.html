@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="text">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h2>WhatsImportant?</h2>
+            <textarea name="full_text" id="" cols="30" rows="10" placeholder="enter your full text here" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <h2 {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</h2>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                <h1>Original Text</h1>
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == 'info' %}
+                <h2 {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</h2>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                <h1>Summarized Text</h1>
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == 'success' %}
+                <h2 {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</h2>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+    </div>
+
+    <style>
+        .error{
+            color: red;
+            font-size: 30px;
+            text-align: center;
+        }
+        .success{
+            color: green;
+            font-size: 30px;
+            text-align: center;
+        }
+        .info{
+            color: black;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        h1{
+            font-size: 40px;
+            text-align: center;
+            color: blue;
+        }
+    </style>
+</body>
+</html>
